@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>VS Code</title>
+
+	<!-- ~~~~~~~~~~~~~~~~~~IDE CSS~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<link rel="stylesheet" href="./node_modules/jquery-ui-dist/jquery-ui.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+	<link rel="stylesheet" href="./node_modules/xterm/css/xterm.css" />
+	<link rel="stylesheet" href="./IDE/index.css">
+
+	<!-- ~~~~~~~~~~~~~~~~~~Whiteboard CSS~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<link rel="stylesheet" href="./Openboard/css/style.css">
+	<link rel="stylesheet" href="./Openboard/css/hamburger.css">
+	<link rel="stylesheet" href="./Openboard/css/queries.css">
+
+</head>
+
+<body>
+	<div id="container">
+		<div id="top-bar">
+			<div class="btn-container">
+				<button id="new" class="btn green">new</button>
+				<button id="save" class="btn ">save</button>
+			</div>
+			<div id="tabs" class="tab-container">
+				<ul></ul>
+			</div>
+			<div class="btn-container">
+				<button class="btn green" id="toggle">Toggle</button>
+				<button class="btn Whiteboard" id="Whiteboard">Switch</button>
+			</div>
+		</div>
+		<div id="main-window">
+			<div id="explorer-window">
+				<div id="content"></div>
+			</div>
+			<div id="editor-terminal-window">
+				<div id="text-editor"></div>
+				<div class="terminal-container">
+					<div id="terminal">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="overlay">
+		<div class="tool-bar">
+			<div class="hamburger is-active" id="hamburger-1">
+				<span class="line"></span>
+				<span class="line"></span>
+				<span class="line"></span>
+			</div>
+			<div class="tool-panel add-animation">
+				<div class="tool active">
+					<img src="./Openboard/NewIcons/draw.svg" alt="" class="tool-img" id="pencil"
+						onclick="handleTool('pencil')">
+					<div class="tool-options pencil" id="pencil-options">
+						<div class="slider">
+							<input type="range" id="pen-size" min="2" max="15" step="1"
+								onchange="sizeChange(this.value)">
+
+						</div>
+						<div class="pencil-colors">
+							<div class="color red" onclick="changeColor('red')"></div>
+							<div class="color green" onclick="changeColor('green')"></div>
+							<div class="color blue" onclick="changeColor('rgb(91, 137, 223)')"></div>
+							<div class="color pink" onclick="changeColor('rgb(224, 100, 141)')"></div>
+							<div class="color coral" onclick="changeColor('coral')"></div>
+						</div>
+					</div>
+				</div>
+				<div class="tool eraser">
+					<img src="./Openboard/NewIcons/clear.svg" alt="" class="tool-img" id="eraser"
+						onclick="handleTool('eraser')">
+					<div class="tool-options eraser" id="eraser-options">
+						<div class="eraser-size">
+							<input type="range" id="eraser-size" min="5" max=50 onchange="sizeChange(this.value)">
+						</div>
+					</div>
+				</div>
+				<div class="tool">
+					<img src="./Openboard/NewIcons/write.svg" alt="" class="tool-img" id="sticky"
+						onclick="handleTool('sticky')">
+
+				</div>
+
+				<div class="tool">
+					<img src="./Openboard/NewIcons/photo.svg" alt="" class="tool-img" id="upload"
+						onclick="handleTool('upload')">
+					<input type="file" name="" id="acceptImg" style="display: none;">
+
+				</div>
+				<div class="tool">
+					<img src="./Openboard/NewIcons/undo.svg" alt="" class="tool-img" id="undo"
+						onclick="handleTool('undo')">
+					<input type="file" name="" id="acceptImg" style="display: none;">
+
+				</div>
+				<div class="tool">
+					<img src="./Openboard/NewIcons/redo.svg" alt="" class="tool-img" id="redo"
+						onclick="handleTool('redo')">
+					<input type="file" name="" id="acceptImg" style="display: none;">
+
+				</div>
+
+				<div class="tool">
+					<img src="./Openboard/NewIcons/download.svg" alt="" class="tool-img" id="download"
+						onclick="handleTool('download')">
+					<input type="file" name="" id="acceptImg" style="display: none;">
+
+				</div>
+
+				<div class="tool">
+					<img src="./Openboard/NewIcons/recycling-bin.svg" alt="" class="tool-img" id="delete"
+						onclick="handleTool('delete')">
+					<input type="file" name="" id="acceptImg" style="display: none;">
+				</div>
+				<div class="tool">
+					<img src="./Openboard/NewIcons/stop.svg" alt="" class="tool-img" id="switch"
+						onclick="handleTool('switch')">
+					<input type="file" name="" id="acceptImg" style="display: none;">
+				</div>
+			</div>
+			<div class="stickyPad">
+				<div class="nav-bar">
+					<div class="close"></div>
+					<div class="minimize"></div>
+				</div>
+				<div class="textarea"></div>
+			</div>
+		</div>
+		
+
+
+		<canvas class="board"></canvas>
+	</div>
+
+	<!-- ~~~~~~~~~~~~~~~~~~IDE SCRIPTS~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<script src="./node_modules/xterm/lib/xterm.js"></script>
+	<script src="./IDE/index.js"></script>
+
+	<!-- ~~~~~~~~~~~~~~~~~~Whiteboard SCRIPTS~~~~~~~~~~~~~~~ -->
+
+	<script src="./Openboard/js/utility.js"></script>
+	<script src="./Openboard/js/canvas.js"></script>
+	<script src="./Openboard/js/tools.js"></script>
+	<script src="./Openboard/js/sticky.js"></script>
+	<script src="./Openboard/js/img.js"></script>
+</body>
+
+</html>
