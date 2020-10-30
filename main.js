@@ -16,11 +16,11 @@ function createWindow() {
 
     // and load the index.html of the app.
     win.loadFile('index.ejs').then(function () {
-        // win.removeMenu();
+        win.removeMenu();
         win.maximize();
         // win.darkTheme(true);
         win.show();
-        win.webContents.openDevTools();
+        // win.webContents.openDevTools();
     });
 
     // Open the DevTools.

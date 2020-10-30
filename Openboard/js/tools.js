@@ -103,6 +103,7 @@ function handleTool(tool) {
         tools[idx].classList.add("active");
 
         $(".overlay").css("display", "none");
+        $(".stickyPad").css("display", "hidden");
     }
 }
 

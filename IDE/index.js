@@ -16,6 +16,8 @@ let defaultName = 'utilited';
 let lcTab = [];
 let lcFolder;
 
+let myMonaco;
+
 $(document).ready(async function () {
     // xterm integration
     // no logic just copy paste code from https://github.com/microsoft/node-pty/blob/master/examples/electron/renderer.js
@@ -209,6 +211,7 @@ $(document).ready(async function () {
 
     $("#Whiteboard").on("click", function() {
         $(".overlay").css("display", "block");
+        $(".stickyPad").css("display", "auto");
     })
 
     $('#new').on('click', function () {
@@ -231,8 +234,6 @@ $(document).ready(async function () {
         tabs.find(".ui-tabs-nav").append(li);
         tabs.append("<div id='" + tabId + "'></div>");
         tabs.tabs("refresh");
-
-
         let fileData = (path === undefined) ? updateEditor() : updateEditor(path);
 
         db[tabId] = {
@@ -252,7 +253,6 @@ $(document).ready(async function () {
         let fileData = fs.readFileSync(path).toString();
         editor.setValue(fileData);
         let lang = getName(path).split('.')[1];
-
         if (lang === 'js') {
             lang = 'javascript';
         }
@@ -262,10 +262,11 @@ $(document).ready(async function () {
     }
 
     function saveFile() {
-        let value = monaco.editor.IStandaloneCodeEditor.getValue()
+        console.log(editor);
+        let value = myMonaco.editor.getValue();
         let path = getName(currPath);
-        console.log(value);
-        fs.writeFileSync(path, value, (err) => { 
+        // console.log(value);
+        fs.writeFile(path, value, (err) => { 
             // In case of a error throw err. 
             if (err) throw err; 
         });
@@ -327,6 +328,7 @@ function getMonacoPromise() {
                 language: 'javascript',
                 theme: "myTheme"
             });
+            myMonaco = monaco;
             resolve(editor);
         });
     });

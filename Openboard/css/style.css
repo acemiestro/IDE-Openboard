@@ -151,7 +151,9 @@ input[type=range]::-webkit-slider-thumb {
     /* background-color: tan; */
     display: none;
     resize: both;
+    z-index: 110;
     overflow: auto;
+    display: auto;
 }
 
 .nav-bar {
@@ -182,11 +184,15 @@ input[type=range]::-webkit-slider-thumb {
 .textbox{
     height: 80%;
     width:100%;
+    color: black;
 }
+
 .textbox textarea{
     height: 100%;
     width: 100%;
+    color: black;
 }
+
 .upload-img{
     height:100%;
     width:100%
